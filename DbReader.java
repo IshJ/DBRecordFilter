@@ -22,12 +22,13 @@ public class DbReader {
     static final String stripString = "\\|";
     static final String filteredOutputPath = dbHome + "filtered.out";
 
-    static int filterThreshold = 300;
+    static int filterThreshold = 370;
 
     public static void main(String[] args) throws IOException {
 
-        filterThreshold = Integer.parseInt(args[0]);
-
+        if(args.length>0) {
+            filterThreshold = Integer.parseInt(args[0]);
+        }
         List<String> logLines = Files.lines(Paths.get(logPath), StandardCharsets.ISO_8859_1).collect(Collectors.toList());
 //            List<String> groundTruthLines = Files.lines(Paths.get(MainAppProcessedPath), StandardCharsets.ISO_8859_1).collect(Collectors.toList());
         List<String> sideChannelLines = Files.lines(Paths.get(sideChannelDbPath), StandardCharsets.ISO_8859_1).collect(Collectors.toList());
